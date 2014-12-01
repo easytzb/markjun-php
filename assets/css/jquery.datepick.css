@@ -1,0 +1,21 @@
+table {border-collapse:collapse;border-spacing:0;border:1px solid #000; width:100%}
+table td{border-color:#000;width:130px;text-align:center;}
+body{margin:0;}
+input.button{cursor:pointer;}
+input {padding:0;}
+.color{background-color:#CCC;}
+.red{color:red;}
+
+#left {position:absolute; left:5px; top:5px;width:19%}
+#content{ width:60%; margin:5px 0 0 20%;}
+#right {position:fixed;right:10px;top:5px; width:18%; text-align:left;}
+#filter, #del,#pushList,#pushAdd,#datepicker, #pushAdmin{display:block; width:218x; margin-bottom:10px;}
+.pushAdd { display:none;}
+#right a{color:#000;}
+#right a:hover{color:red;}
+#flowList { font-weight: bold;}
+
+.ipFrom {cursor:pointer; text-decoration:underline;}
+.ipFrom:hover{ color:red;}
+
+#push {}

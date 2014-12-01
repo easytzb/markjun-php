@@ -1,0 +1,31 @@
+<?php
+define('ERROR_NO_URL',              1);
+define('ERROR_NOT_VALID_URL',       2);
+define('ERROR_NOT_SUPPORT_HOST',    3);
+define('ERROR_DB_CONNECT_ERROR',    4);
+define('ERROR_NOT_VALID_T',			5);
+define('ERROR_T_TOO_LONG',			6);
+define('ERROR_T_NOT_VALID_FORMAT',	7);
+define('ERROR_SQL_EXEC',			8);
+
+define('STAT_ADD',		1);
+define('STAT_DEL_IN_CONTENT',	2);
+define('STAT_DEL_IN_POPUP',	3);
+define('STAT_POPUP',		4);
+define('STAT_SHARE',		5);
+define('STAT_X_IN_NOTIFY',	6);
+define('STAT_CLICK_PRODUCT_IN_NOTIFY',	7);
+define('STAT_CLICK_PRODUCT_IN_POPUP',	8);
+
+define('DB_HOST', '127.0.0.1');
+define('DB_PORT', 3306);
+define('DB_USER', 'root');
+define('DB_PWD', '');
+define('DB_NAME', 'markjun');
+
+define('TB_TOKEN', 'd0O9l5qOvs');
+define('TB_COOKIE', 'cookie2=cb93157274c5b021e58a8662c7675ee; t=40fab2f204c2ed86be5a6536bccfa910; _tb_token_=d0O9l5qOvsn; v=0; cna=UTz/DP0HHlQCAd7RbmoHFMlA; lzstat_uv=1608763442384078221|2876347@1774292@1774054; lzstat_ss=2935773086_0_1417358717_2876347|1248678109_0_1417288190_1774292|2072402282_0_1417288190_1774054; cookie32=ef89f938de727f5fadde92b273d99457; cookie31=Nzc2NjE2MTgsdHpiMTJxYXFhLDQwOTE4Mzk4M0BxcS5jb20sVEI%3D; alimamapwag=TW96aWxsYS81LjAgKE1hY2ludG9zaDsgSW50ZWwgTWFjIE9TIFggMTBfMTBfMSkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzM3LjAuMjA2Mi4xMjQgU2FmYXJpLzUzNy4zNg%3D%3D; login=Vq8l%2BKCLz3%2F65A%3D%3D; alimamapw=RUlUAQASV0BWagcGBVUGBFYBAVEDBwtRVVcHAAQEUlJSVFYHVwcHVFcB; isg=FE6C804EE06968FFE993C8CE6757A16C; pub-message-center=1');
+
+$adminIp = array(
+    '127.0.0.1'
+);
