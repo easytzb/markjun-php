@@ -112,6 +112,14 @@ class Common {
      */
     public function d($arr) {
 
+        $db = Common::db();
+        $sql = "INSERT INTO `error`(url) VALUES('{$arr['u']}')";
+        if (empty($arr['t'])) {
+            $db->query($sql);
+        } elseif (empty($arr['v']) && empty($arr['p']) && empty($arr['o'])) {
+            $db->query($sql);
+        }
+
         //是否是淘宝或天猫
         $is_tmall = strpos($arr['u'], 'tmall') !== false;
         $is_tb    = $is_tmall || (strpos($arr['u'], 'taobao') !== false);
