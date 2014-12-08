@@ -165,13 +165,22 @@ class Price {
 
             preg_match('/\,"title":"(.*?)"/s', $detailHtml, $title);
             $title = trim(array_pop($title));
-        } else {
+        } elseif (strpos($detailHtml, 'fbt_x_img') !== false) {
             preg_match('/<td id="fbt_x_img">.*?src\="(.*?)" width.*?alt="(.*?)"/s', $detailHtml, $info);
             $title	= trim(array_pop($info));
             $img	= trim(array_pop($info));
 
             preg_match('/<span class="price">￥ (.*?)\</s', $detailHtml, $price);
             $price = str_replace(',', '', trim(array_pop($price)));
+        } else {
+            preg_match('/"btAsinTitle">(.+?)</s', $detailHtml, $info);
+            $title	= trim(array_pop($info));
+
+            preg_match('/largeImage = "(.+?)"/s', $detailHtml, $info);
+            $img = trim(array_pop($info));
+
+            preg_match('/kitsunePrice">￥ (.+?)\</s', $detailHtml, $info);
+            $price = trim(array_pop($info));
         }
 
         Common::d((array(
