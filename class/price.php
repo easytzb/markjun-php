@@ -417,6 +417,8 @@ class Price {
             $this->pic = 'http://img01.taobaocdn.com/bao/uploaded/' . $this->pic;
         }
 
+        $this->title = iconv('GBK', 'UTF-8', $this->title);
+
         Common::d((array(
             'u' => $this->url,
             'p'	=> $this->price,
