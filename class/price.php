@@ -333,7 +333,7 @@ class Price {
         $ch->setOption(CURLOPT_ENCODING, 'gzip,deflate');
         $ch->setOption(CURLOPT_FOLLOWLOCATION, true); //对于301/2关键在这里
         $detailHtml = $ch->exec();
-        $ch->close();		
+        $ch->close();
 
         //获取价格api地址
         $reg = '/var b="(.+?)"/';
@@ -386,7 +386,7 @@ class Price {
     private function taobaoBase($detailHtml) {
 
         //判断是否下架
-        $this->offSale = ((strpos($detailHtml, 'tb-key-off-sale') !== false) || (strpos($detailHtml, 'J_Sold-out-recommend') !== false));
+        $this->offSale = ((strpos($detailHtml, 'tb-key-off-sale') !== false) || (strpos($detailHtml, 'J_Sold-out-recommend') !== false) || (strpos($detailHtml, 'error-notice-text') !== false));
 
         preg_match('/<div id="J_itemViewed" catId="\d+" data\-value=\'(.+?)\'><\/div>/', $detailHtml, $info);
         $info = trim(array_pop($info));
@@ -412,11 +412,10 @@ class Price {
         if (empty($this->priceVip))
             $this->priceVip = empty($this->priceVip)?0:$this->priceVip;
 
-        if (strpos($this->pic, 'http') === false ) {
+        if ($this->pic 
+            && strpos($this->pic, 'http') === false) {
             $this->pic = 'http://img01.taobaocdn.com/bao/uploaded/' . $this->pic;
         }
-
-        $this->title = iconv('GBK', 'UTF-8', $this->title);
 
         Common::d((array(
             'u' => $this->url,
