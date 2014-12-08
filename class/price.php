@@ -279,7 +279,7 @@ class Price {
             $ch->close();
             //preg_match_all('/,"price":"([0-9.]+)","promotionList/', $detailHtml, $price);
             //if (isset($price[1])) $price = floatval(is_array($price[1])?min($price[1]):$priceBak);
-            preg_match_all('/,"price":"([0-9.]+)","promText/', $detailHtml, $priceVip);
+            preg_match_all('/,"price":"([0-9.]+)","prom/', $detailHtml, $priceVip);
             if (isset($priceVip[1])) $this->priceVip = floatval(is_array($priceVip[1])?min($priceVip[1]):0);
 
         } else $this->getTaobaoWt($detailHtml);
@@ -379,7 +379,7 @@ class Price {
             preg_match('/url\((.*?)\)" id="J_ImgBooth"/', $detailHtml, $info);
         $this->pic = trim($info[1]);
 
-        preg_match('/class="originPrice"\>&yen;(.*?)\</', $detailHtml, $info);
+        preg_match('/"defaultItemPrice":"([0-9\.]+?)"/', $detailHtml, $info);
         $this->price = trim($info[1]);
     }
 
