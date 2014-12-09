@@ -121,7 +121,7 @@ class Common {
         if (empty($arr['d'])) { //若是需要删除的商品,不用记录
             if (empty($arr['t'])) {
                 $db->query(sprintf($sql, 1));
-            } elseif (empty($arr['p'])) {
+            } elseif (empty($arr['p']) && $arr['o'] == 0) {
                 $db->query(sprintf($sql, 2));
             } elseif (empty($arr['i'])) {
                 $db->query(sprintf($sql, 3));
