@@ -113,12 +113,21 @@ class Common {
     public function d($arr) {
 
         $db = Common::db();
-        $sql = "INSERT INTO `error`(url) VALUES('{$arr['u']}')";
-        if (empty($arr['t'])) {
-            $db->query($sql);
-        } elseif (empty($arr['v']) && empty($arr['p']) && empty($arr['o'])) {
-            $db->query($sql);
+        $sql = "INSERT INTO `error`(url, ip, err_no) 
+            VALUES('{$arr['u']}', 
+                '" .Common::getIp() . "',
+                '%d'
+            )";
+        if (empty($arr['d'])) { //若是需要删除的商品,不用记录
+            if (empty($arr['t'])) {
+                $db->query(sprintf($sql, 1));
+            } elseif (empty($arr['p'])) {
+                $db->query(sprintf($sql, 2));
+            } elseif (empty($arr['i'])) {
+                $db->query(sprintf($sql, 3));
+            }
         }
+        unset($arr['d']);
 
         //是否是淘宝或天猫
         $is_tmall = strpos($arr['u'], 'tmall') !== false;

@@ -2,6 +2,7 @@
 class Price {
     private $url    = null;
     private $host   = null;            
+    private $need_delete    = false;
 
     public function __construct() {
         if (empty($_GET['url'])) Common::error(ERROR_NO_URL, 'ERROR_NO_URL');
@@ -344,6 +345,18 @@ class Price {
         $detailHtml = $ch->exec();
         $ch->close();
 
+        //判断是否已移除
+        $this->need_delete = (strpos($detailHtml, 'error-notice-text') !== false);
+        if ($this->need_delete) {
+            //已移除的商品，啥也不用做了
+            $this->title = '';
+            $this->price = 0;
+            $this->priceVip = 0;
+            $this->pic = '';
+            $this->offSale = 1;
+            $this->aliResponse();
+        }
+
         //获取价格api地址
         $reg = '/var b="(.+?)"/';
         preg_match($reg, $detailHtml, $newUrl);
@@ -395,7 +408,7 @@ class Price {
     private function taobaoBase($detailHtml) {
 
         //判断是否下架
-        $this->offSale = ((strpos($detailHtml, 'tb-key-off-sale') !== false) || (strpos($detailHtml, 'J_Sold-out-recommend') !== false) || (strpos($detailHtml, 'error-notice-text') !== false));
+        $this->offSale = ((strpos($detailHtml, 'tb-key-off-sale') !== false) || (strpos($detailHtml, 'J_Sold-out-recommend') !== false));
 
         preg_match('/<div id="J_itemViewed" catId="\d+" data\-value=\'(.+?)\'><\/div>/', $detailHtml, $info);
         $info = trim(array_pop($info));
@@ -434,7 +447,8 @@ class Price {
             'v'	=> $this->priceVip,
             'i'	=> $this->pic,
             't'	=> $this->title,
-            'o' => intval($this->offSale)
+            'o' => intval($this->offSale),
+            'd' => $this->need_delete
         )));
     }
 }
