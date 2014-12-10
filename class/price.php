@@ -401,7 +401,7 @@ class Price {
             preg_match('/url\((.*?)\)" id="J_ImgBooth"/', $detailHtml, $info);
         $this->pic = trim($info[1]);
 
-        preg_match('/"defaultItemPrice":"([0-9\.]+?)"/', $detailHtml, $info);
+        preg_match('/"defaultItemPrice":"([0-9\.]+?)[" ]/', $detailHtml, $info);
         $this->price = trim($info[1]);
     }
 
